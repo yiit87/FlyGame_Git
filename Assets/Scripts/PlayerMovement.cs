@@ -20,13 +20,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public Vector3 GetPlayerInput()
     {
-        //if (PC)
-        //{
-           
-        //}
-        //else
-        {
-            if (UsingAccelerometer)
+        ////This part written for mobile phone contros however its not complete
+        if (UsingAccelerometer)
             {
                 Vector3 acceleration = Input.acceleration;
                 acceleration.y = acceleration.z;
@@ -62,12 +57,14 @@ public class PlayerMovement : MonoBehaviour
                 }
                 return touches;
             }
-        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        //This part written for mobile phone contros however its not complete
+        //*******************************************************************
         //Vector3 moveVector = transform.forward * DefaultSpeed;
 
         //Vector3 inputsPlayer = GetPlayerInput();
@@ -93,13 +90,12 @@ public class PlayerMovement : MonoBehaviour
         //    moveVector += direction;
         //    Debug.Log(moveVector);
 
-        //    if (Input.GetKey(KeyCode.Q))
-        //    {
-        //        transform.rotation = Quaternion.LookRotation(moveVector);
-        //    }
+
+        //    transform.rotation = Quaternion.LookRotation(moveVector);
         //}
-        //transform.Rotate(PlaneRoll);
         //PlayerController.Move(moveVector * Time.deltaTime);
+
+
         if (Input.GetKey(KeyCode.Q))
         {
             DefaultSpeed++;

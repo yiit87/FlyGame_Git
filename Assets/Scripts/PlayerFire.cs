@@ -20,6 +20,9 @@ public class PlayerFire : MonoBehaviour
     private GameObject Bullet1;
     private GameObject Bullet2;
 
+    private int Health = 100;
+    public AudioSource GunFire;
+
     private void Start()
     {
         MuzzleFlash1.Stop();
@@ -30,16 +33,16 @@ public class PlayerFire : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-           
-
-
-            
             Shoot();
         }
     }
 
     private void Shoot()
     {
+        if (GunFire.isPlaying == false)
+        {
+            GunFire.Play();
+        }
         MuzzleFlash1.Play();
         MuzzleFlash2.Play();
 
@@ -53,21 +56,21 @@ public class PlayerFire : MonoBehaviour
 
         if (Physics.Raycast(Location1.transform.position, Location1.transform.forward, out hit, Range))
         {
-            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            EnemyIndividual enemy = hit.transform.GetComponent<EnemyIndividual>();
 
             if (enemy != null)
             {
                 enemy.TakeDamage(Damage);
             }
 
-            if (hit.rigidbody != null)
-            {
-
-            }
             Debug.Log("Hit!");
         }
         Destroy(Bullet1, 1);
         Destroy(Bullet2, 1);
     }
 
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+    }
 }
